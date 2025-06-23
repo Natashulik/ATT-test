@@ -35,6 +35,20 @@
   color: rgb(101, 99, 99);
 }
 
+.form-select-chosen__output::after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url("../../assets/images/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: transform 0.5s ease;
+}
+
 .form-select-chosen__output-icon {
   position: absolute;
   display: inline-block;
@@ -45,8 +59,8 @@
 }
 
 .form-select-chosen__output-wrap:has(+ .form-select-chosen__search.is-visible)
-  .form-select-chosen__output-icon {
-  transform: rotate(180deg);
+  .form-select-chosen__output::after {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .form-select-chosen__output:empty::before {
