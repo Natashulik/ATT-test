@@ -2,14 +2,23 @@
   position: relative;
   cursor: pointer;
   user-select: none;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 350px;
 }
 
 .form-select-chosen__input {
   display: none;
 }
 
+.form-select-chosen__input.error-class + .form-select-chosen__output-wrap {
+  border: 2px solid red;
+}
+
 .form-select-chosen__output-wrap {
-  border: 1px solid;
+  border: 2px solid lightgray;
+  border-radius: 7px;
 }
 
 .form-select-chosen__output-wrap:has(+ .form-select-chosen__search.is-visible) {
@@ -18,11 +27,32 @@
 }
 
 .form-select-chosen__output {
+  position: relative;
+  min-height: 30px;
+  padding: 7px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(101, 99, 99);
+}
+
+.form-select-chosen__output-icon {
+  position: absolute;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  right: 5px;
+  transition: transform 0.5s ease;
+}
+
+.form-select-chosen__output-wrap:has(+ .form-select-chosen__search.is-visible)
+  .form-select-chosen__output-icon {
+  transform: rotate(180deg);
 }
 
 .form-select-chosen__output:empty::before {
   content: attr(data-placeholder);
   color: #898989;
+  font-size: 14px;
 }
 
 .form-select-chosen__search {
@@ -30,13 +60,16 @@
   position: absolute;
   width: 100%;
   max-height: 400px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  border: 1px solid;
+  border: 2px solid lightgrey;
+  border-radius: 0 0 7px 7px;
   border-top: none;
   z-index: 2;
   background-color: white;
+  transform: translateY(-10px);
 }
 
 .form-select-chosen__search:not(.is-visible) {
@@ -44,18 +77,90 @@
 }
 
 .form-select-chosen__search-input {
-  border: 1px solid;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
   margin: 0.25rem;
   outline: none;
+  min-height: 25px;
+  padding-inline: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(101, 99, 99);
+  background-image: url("./images/loupe.svg");
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 12px;
+}
+
+.form-select-chosen__search-input.hidden {
+  background-image: none;
 }
 
 .form-select-chosen__options {
   margin: 0;
   padding: 0;
-  max-height: 400px;
+  max-height: 250px;
   list-style-type: none;
   overflow: auto;
 }
 
 .form-select-chosen__option {
+  min-height: 28px;
+  padding-inline: 7px;
+  border-top: 1px solid rgb(242, 239, 239);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(101, 99, 99);
+}
+
+/*-------скроллбар--------*/
+
+.form-select-chosen__options::-webkit-scrollbar {
+  width: 12px;
+}
+
+.form-select-chosen__options::-webkit-scrollbar-track {
+  background: #f8f7f7;
+}
+
+.form-select-chosen__options::-webkit-scrollbar-thumb {
+  background: #afafaf;
+  border-radius: 0;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  width: 8px;
+}
+
+.form-select-chosen__options::-webkit-scrollbar-thumb:hover {
+  background: #848383;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  width: 8px;
+}
+
+.form-select-chosen__options::-webkit-scrollbar-button:single-button {
+  background-color: #f8f7f7;
+  display: block;
+  height: 15px;
+  width: 12px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.form-select-chosen__options::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23555' d='M5 1L1 5h8z'/></svg>")
+      center no-repeat,
+    #f8f7f7;
+  height: 15px;
+  width: 12px;
+  background-size: 8px 5px;
+}
+
+.form-select-chosen__options::-webkit-scrollbar-button:single-button:vertical:increment {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23555' d='M5 5L1 1h8z'/></svg>")
+      center no-repeat,
+    #f8f7f7;
+  height: 15px;
+  width: 12px;
+  background-size: 8px 5px;
 }
